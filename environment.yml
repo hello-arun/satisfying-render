@@ -1,0 +1,25 @@
+name: musical
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python
+  - pip
+  - pymunk
+  - pygame
+  - pip:
+    - tabulate
+    - autopep8
+  - numpy
+  - scipy
+  - pandas
+  - shapely
+  - matplotlib
+  - jupyterlab
+  - jupyterlab-lsp
+# phonopy
+  # - conda-forge::phonopy=2.16.3
+
+prefix: /home/jangira/miniconda3/envs/musical
