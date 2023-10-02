@@ -41,11 +41,11 @@ def run(screen, width, height):
     fps = 120
     dt = 1/fps
     space = pymunk.Space()
-    space.gravity = (0,98.7)
+    space.gravity = (0,0)
     ball:pymunk.Shape = create_ball(space,10,25)
     create_boundaries(space,WIDTH,HEIGHT)
-    music = pygame.mixer.Sound("../data/harry-potter-marble-music.mp3")
-    beatTimes=np.loadtxt("../data/harry-potter-marble-music.txt").tolist()
+    music = pygame.mixer.Sound("../data/mario-marble-music.mp3")
+    beatTimes=np.loadtxt("../data/mario-marble-music.txt").tolist()
     # boundary =
     draw_options = pymunk.pygame_util.DrawOptions(screen)
     TIME=0
@@ -53,12 +53,15 @@ def run(screen, width, height):
     font = pygame.font.SysFont(None, 48)
     idx=0
     img:pygame.Surface = font.render(f'{idx}', True, (0,0,255))
-    direction=[(-500,0),(0,-500),(500,0),(0,500)]
+    impulseDir=[(-5000,0),(0,-5000),(5000,0),(0,5000)]
+    velocityDir=[(-500,0),(0,-500),(500,0),(0,500)]
+    # for th in np.random.rand(60)*np.pi*2:
+        # velocityDir.append((500*np.cos(th),500*np.sin(th)))
     while run:
         if TIME>=beatTimes[0]:
             bd:pymunk.Body=ball.body
-            # bd._set_velocity(direction[idx%4])
-            bd.apply_impulse_at_local_point((0,-1200),(0,0))
+            bd._set_velocity(velocityDir[idx%len(velocityDir)])
+            # bd.apply_impulse_at_local_point(impulseDir[idx%4])
             img:pygame.Surface = font.render(f'{idx}', True, (0,0,255))
             idx+=1
             beatTimes.pop(0)
