@@ -9,6 +9,7 @@ dependencies:
   - pip
   - pymunk
   - pygame
+  - librosa
   - pip:
     - tabulate
     - autopep8
